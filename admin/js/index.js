@@ -21,20 +21,22 @@ togglerBtn.addEventListener('click', function(){
 
 // Define routes 
 
+//  import routes form pages 
+import dashboard from "../pages/dashboard.js"
+import courses from "../pages/courses.js"
+import students from "../pages/students.js"
+import settings from "../pages/settings.js"
+import notFound from "../pages/notFound.js"
+
+
+
 const routes = {
-    '/' : `<h1>Welcome to dashboard</h1>`,
-    '/courses' : `<h1>Welcome to courses</h1>`,
-    '/students' : `<h1>Just for code</h1>`,
-    '/settings' : `<h1>Welcome to settings</h1>`
+    '/' : dashboard,
+    '/courses' :courses,
+    '/students' : students,
+    '/settings' : settings
 }
 
-const notFound = `
-    <div class="not-found">
-        <h1>404</h1>
-        <p>Oops! The page you're looking for dosen't exist</p>
-        <button>Go to Dashboard</button>
-    </div>
-`
 
 // hangle routes changes
 const handleRouteChanges = () =>{
@@ -55,7 +57,22 @@ menuItems.forEach((items)=>{
     })
 })
 
-// load the initial routes
+// // load the initial routes
 window.onhashchange= () => {
     handleRouteChanges()
 }
+
+// Handle Hash Changes
+// window.addEventListener('hashchange', handleRouteChanges);
+
+// Handle Initial Load
+// window.addEventListener('DOMContentLoaded', () => {
+//     // If no hash is present, default to '/'
+//     if(!window.location.hash){
+//         window.location.hash = '/';
+//         console.log(menuItems);
+//         menuItems[0].classList.toggle('active');
+//     } else {
+//         handleRouteChanges();
+//     }
+// });

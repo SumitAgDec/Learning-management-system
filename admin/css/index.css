@@ -75,6 +75,8 @@
     padding: 40px;
     border-radius: 8px;
     box-shadow:  0px 4px 8px rgba(0, 0, 0, 0.1);
+    animation: swing;
+    animation-duration: 1s;
 }
 
 .page .not-found h1{

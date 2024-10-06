@@ -11,6 +11,7 @@
     <!-- Start js link -->
      <script src="../assets/js/bootstrap.js"></script>
      <script src="../assets/js/sweetalert.js"></script>
+     <script src="../assets/js/tailwind.js"></script>
     <!-- End js link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Admin Panel</title>
@@ -46,15 +47,29 @@
     </div>
     <div class="page-content active">
         <nav class="navbar bg-light shadow-sm">
-            <button class="btn toggler-btn">
-                <i class="fa fa-align-left"></i>
-            </button>
+            <div class="container-fluid">
+                <button class="btn toggler-btn">
+                    <i class="fa fa-align-left"></i>
+                </button>
+                <div class="flex gap-3">
+                    <button class="btn rounded-full bg-green-200 text-green-600">
+                        <i class="fa-regular fa-envelope"></i>
+                    </button>
+                    <button class="btn rounded-full bg-red-200 text-red-600">
+                        <i class="fa-regular fa-bell"></i>
+                    </button>
+                    <button class="btn rounded-full bg-red-400 text-white">
+                        A
+                    </button>
+                </div>
+            </div>
+
         </nav>
         <div class="page p-4">
             
         </div>
     </div>
 
-    <script src="js/index.js"></script>
+    <script src="js/index.js" type="module"></script>
 </body>
 </html>
