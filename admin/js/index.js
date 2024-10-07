@@ -28,6 +28,9 @@ import students from "../pages/students.js"
 import settings from "../pages/settings.js"
 import notFound from "../pages/notFound.js"
 
+//  import routes form pages / js folder
+import {dashboardFunc} from '../pages/js/dashboard.js'
+
 
 
 const routes = {
@@ -40,10 +43,11 @@ const routes = {
 
 // hangle routes changes
 const handleRouteChanges = () =>{
-    console.log(window.location.hash);
     let path = window.location.hash.replace("#", "") || "/";
-    console.log(path);
     page.innerHTML = routes[path] || notFound;
+    if( path == '/'){
+        dashboardFunc()
+    }
 }
 
 //handle routes navigation
@@ -58,21 +62,21 @@ menuItems.forEach((items)=>{
 })
 
 // // load the initial routes
-window.onhashchange= () => {
-    handleRouteChanges()
-}
+// window.onhashchange= () => {
+//     handleRouteChanges()
+// }
 
 // Handle Hash Changes
-// window.addEventListener('hashchange', handleRouteChanges);
+window.addEventListener('hashchange', handleRouteChanges);
 
 // Handle Initial Load
-// window.addEventListener('DOMContentLoaded', () => {
-//     // If no hash is present, default to '/'
-//     if(!window.location.hash){
-//         window.location.hash = '/';
-//         console.log(menuItems);
-//         menuItems[0].classList.toggle('active');
-//     } else {
-//         handleRouteChanges();
-//     }
-// });
+window.addEventListener('DOMContentLoaded', () => {
+    // If no hash is present, default to '/'
+    if(!window.location.hash){
+        window.location.hash = '/';
+        console.log(menuItems);
+        menuItems[0].classList.toggle('active');
+    } else {
+        handleRouteChanges();
+    }
+});
