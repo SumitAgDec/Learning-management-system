@@ -49,7 +49,7 @@ const dashboard = `
             <p class="text-lg text-gray-500">64,625</p>
         </div>
     </div>
-
+    <div class="p-4 column-chart md:col-span-4 bg-white shadow-sm"></div>
     <div class="p-4 area-chart md:col-span-2 bg-white shadow-sm"></div>
     <div class="p-4 bg-white shadow-sm">
         <div class="border-b mb-3">
