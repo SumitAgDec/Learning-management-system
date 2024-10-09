@@ -1,6 +1,6 @@
 const courses = `
-<div class="grid md:grid-cols-5 gap-4">
-    <div class="p-4 md:col-span-3 bg-white shadow-sm">
+<div class="animate__animated animate__zoomIn grid md:grid-cols-5 gap-4">
+    <div class="p-4 table-responsive md:col-span-3 bg-white shadow-sm">
         <div class="flex border-b pb-2 justify-between items-center">
             <h5 class="text-xl font-semibold">Course list</h5>
             <button data-bs-toggle="modal" data-bs-target="#course-modal"
@@ -8,8 +8,8 @@ const courses = `
                 <i class="fa fa-plus"></i>
             </button>
         </div>
-        <div class="table-responsive">
-            <table class="table">
+        <div class="">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th class="text-nowrap">Sr</th>
@@ -42,66 +42,12 @@ const courses = `
                             </button>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="text-nowrap">1</td>
-                        <td class="text-nowrap"><img src="/assets/images/javascript.png" width="40px" alt=""></td>
-                        <td class="text-nowrap">Front-End</td>
-                        <td class="text-nowrap">Javascript</td>
-                        <td class="text-nowrap"><a href="#">Link</a></td>
-                        <td class="text-nowrap">3000</td>
-                        <td class="text-nowrap">4 months</td>
-                        <td class="text-nowrap">12-08-2024</td>
-                        <td class="text-nowrap">
-                            <button class="text-green-300">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </button>
-                            <button class="text-red-300">
-                                <i class="fa-regular fa-trash-can"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-nowrap">1</td>
-                        <td class="text-nowrap"><img src="/assets/images/javascript.png" width="40px" alt=""></td>
-                        <td class="text-nowrap">Front-End</td>
-                        <td class="text-nowrap">Javascript</td>
-                        <td class="text-nowrap"><a href="#">Link</a></td>
-                        <td class="text-nowrap">3000</td>
-                        <td class="text-nowrap">4 months</td>
-                        <td class="text-nowrap">12-08-2024</td>
-                        <td class="text-nowrap">
-                            <button class="text-green-300">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </button>
-                            <button class="text-red-300">
-                                <i class="fa-regular fa-trash-can"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-nowrap">1</td>
-                        <td class="text-nowrap"><img src="/assets/images/javascript.png" width="40px" alt=""></td>
-                        <td class="text-nowrap">Front-End</td>
-                        <td class="text-nowrap">Javascript</td>
-                        <td class="text-nowrap"><a href="#">Link</a></td>
-                        <td class="text-nowrap">3000</td>
-                        <td class="text-nowrap">4 months</td>
-                        <td class="text-nowrap">12-08-2024</td>
-                        <td class="text-nowrap">
-                            <button class="text-green-300">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </button>
-                            <button class="text-red-300">
-                                <i class="fa-regular fa-trash-can"></i>
-                            </button>
-                        </td>
-                    </tr>
                 </tbody>
             </table>
 
         </div>
     </div>
-    <div class="p-4 md:col-span-2 bg-white shadow-sm">
+    <div class="p-4 table-responsive md:col-span-2 bg-white shadow-sm">
         <div class="flex border-b pb-2 justify-between items-center">
             <h5 class="text-xl font-semibold">Category list</h5>
             <button data-bs-toggle="modal" data-bs-target="#category-modal"
@@ -109,8 +55,8 @@ const courses = `
                 <i class="fa fa-plus"></i>
             </button>
         </div>
-        <div class="table-responsive">
-            <table class="table">
+        <div class="">
+            <table class="table table-striped">
                 <thead>
                     <tr>
                         <th class="text-nowrap">Sr</th>
@@ -121,45 +67,6 @@ const courses = `
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td class="text-nowrap">1</td>
-                        <td class="text-nowrap">Front-End</td>
-                        <td class="text-nowrap">12-08-2024</td>
-                        <td class="text-nowrap">
-                            <button class="text-green-300">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </button>
-                            <button class="text-red-300">
-                                <i class="fa-regular fa-trash-can"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-nowrap">1</td>
-                        <td class="text-nowrap">Front-End</td>
-                        <td class="text-nowrap">12-08-2024</td>
-                        <td class="text-nowrap">
-                            <button class="text-green-300">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </button>
-                            <button class="text-red-300">
-                                <i class="fa-regular fa-trash-can"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="text-nowrap">1</td>
-                        <td class="text-nowrap">Front-End</td>
-                        <td class="text-nowrap">12-08-2024</td>
-                        <td class="text-nowrap">
-                            <button class="text-green-300">
-                                <i class="fa-regular fa-pen-to-square"></i>
-                            </button>
-                            <button class="text-red-300">
-                                <i class="fa-regular fa-trash-can"></i>
-                            </button>
-                        </td>
-                    </tr>
                     <tr>
                         <td class="text-nowrap">1</td>
                         <td class="text-nowrap">Front-End</td>

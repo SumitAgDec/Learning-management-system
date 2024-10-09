@@ -1,5 +1,4 @@
 const dashboard = `
-
 <div class="animate__animated animate__zoomIn grid md:grid-cols-4 gap-3 ">
     <div class="grid grid-cols-2 p-4 bg-white shadow-sm">
         <div class="flex flex-column items-center border-r gap-3">
