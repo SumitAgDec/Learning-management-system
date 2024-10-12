@@ -93,7 +93,8 @@ const users = `
             </div>
         </div>
     </div>
-    <button data-bs-toggle="modal" data-bs-target="#users-modal" class="position-fixed bottom-0 right-0 m-16 bg-red-500 text-white btn w-11 h-11 rounded-full">
+    <button data-bs-toggle="modal" data-bs-target="#users-modal"
+        class="position-fixed bottom-0 right-0 m-16 bg-red-500 text-white btn w-11 h-11 rounded-full">
         <i class="fa fa-add"></i>
     </button>
 
@@ -107,120 +108,133 @@ const users = `
                     </div>
                     <div class="modal-body">
                         <div class="row mb-3">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="name">
+                                        Profile <sup class="text-red-500">*</sup>
+                                    </label>
+                                    <input type="file" name="profile"  class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
                             <div class="col-6">
                                 <div class="form-group">
-                            <label for="name">
-                                Name <sup class="text-red-500">*</sup>
-                            </label>
-                            <input type="text" name="name" required class="form-control">
-                        </div>
+                                    <label for="name">
+                                        Name <sup class="text-red-500">*</sup>
+                                    </label>
+                                    <input type="text" name="name"  class="form-control">
+                                </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                            <label for="name">
-                                Mobile <sup class="text-red-500">*</sup>
-                            </label>
-                            <input type="number" name="mobile" required class="form-control">
-                        </div>
+                                    <label for="name">
+                                        Mobile <sup class="text-red-500">*</sup>
+                                    </label>
+                                    <input type="number" name="mobile"  class="form-control">
+                                </div>
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-6">
                                 <div class="form-group">
-                            <label for="name">
-                                Email <sup class="text-red-500">*</sup>
-                            </label>
-                            <input type="email" name="email" required class="form-control">
-                        </div>
+                                    <label for="name">
+                                        Email <sup class="text-red-500">*</sup>
+                                    </label>
+                                    <input type="email" name="email"  class="form-control">
+                                </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                            <label for="name">
-                                Password <sup class="text-red-500">*</sup>
-                            </label>
-                            <input type="password" name="password" required class="form-control">
-                        </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-6">
-                                <div class="form-group">
-                            <label for="name">
-                                Father's name <sup class="text-red-500">*</sup>
-                            </label>
-                            <input type="text" name="father" required class="form-control">
-                        </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                            <label for="name">
-                                Qualifications <sup class="text-red-500">*</sup>
-                            </label>
-                            <select class="form-select" name="qualification">
-                                <option value="select qualification">Select Qualification</option>
-                                <option value="heigh school">Heigh School</option>
-                                <option value="inter">Inter</option>
-                                <option value="ug">UG</option>
-                                <option value="pg">PG</option>
-                            </select>
-                        </div>
+                                    <label for="name">
+                                        Password <sup class="text-red-500">*</sup>
+                                    </label>
+                                    <input type="password" name="password"  class="form-control">
+                                </div>
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-6">
                                 <div class="form-group">
-                            <label for="name">
-                                Status <sup class="text-red-500">*</sup>
-                            </label>
-                            <select name="status" class="form-select">
-                                <option value="select status">Select Status</option>
-                                <option value="true">Active</option>
-                                <option value="false">Pending</option>
-                            </select>
-                        </div>
+                                    <label for="name">
+                                        Father's name <sup class="text-red-500">*</sup>
+                                    </label>
+                                    <input type="text" name="father"  class="form-control">
+                                </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                            <label for="name">
-                                User type <sup class="text-red-500">*</sup>
-                            </label>
-                            <select name="type" class="form-select">
-                                <option value="select user type">Select user type</option>
-                                <option value="admin">Admin</option>
-                                <option value="teacher">Teacher</option>
-                                <option value="user">user</option>
-                            </select>
+                                    <label for="name">
+                                        Qualifications <sup class="text-red-500">*</sup>
+                                    </label>
+                                    <select class="form-select" name="qualification">
+                                        <option value="select qualification">Select Qualification</option>
+                                        <option value="heigh school">Heigh School</option>
+                                        <option value="inter">Inter</option>
+                                        <option value="ug">UG</option>
+                                        <option value="pg">PG</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
+
+                        <div class="row mb-3">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <input type="checkbox" name="status">
+                                    <label for="name">
+                                        Is active
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-6 flex gap-3">
+                                <div class="form-group">
+                                    <input type="radio" name="type" value="admin">
+                                    <label for="name">
+                                        Admin 
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="radio" name="type" value="teacher">
+                                    <label for="name">
+                                        Teacher 
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <input type="radio" name="type" value="user">
+                                    <label for="name">
+                                        User 
+                                    </label>
+                                </div>
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-12">
                                 <div class="form-group">
-                            <label for="name">
-                                Select Courses <sup class="text-red-500">*</sup>
-                            </label>
-                            <select class="form-select" name="course" multiple>
-                                <option value="nodejs">Node js</option>
-                                <option value="reactjs">React js</option>
-                                <option value="php">Php</option>
-                                <option value="javascript">Javascript</option>
-                            </select>
-                        </div>
+                                    <label for="name">
+                                        Select Courses <sup class="text-red-500">*</sup>
+                                    </label>
+                                    <select class="form-select" name="course" multiple>
+                                        <option value="nodejs">Node js</option>
+                                        <option value="reactjs">React js</option>
+                                        <option value="php">Php</option>
+                                        <option value="javascript">Javascript</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
 
                         <div class="row mb-3">
                             <div class="col-12">
                                 <div class="form-group">
-                            <label for="name">
-                                Address <sup class="text-red-500">*</sup>
-                            </label>
-                            <textarea name="address" class="form-control"></textarea>
-                        </div>
+                                    <label for="name">
+                                        Address <sup class="text-red-500">*</sup>
+                                    </label>
+                                    <textarea name="address" class="form-control"></textarea>
+                                </div>
                             </div>
                         </div>
 
