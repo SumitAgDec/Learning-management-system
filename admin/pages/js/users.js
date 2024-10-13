@@ -1,4 +1,10 @@
-import { registerFunc, getDataFunc, formateDateFunc } from "../../module/module.js"
+import { 
+    registerFunc, 
+    getDataFunc, 
+    formateDateFunc, 
+    isConfirmFunc,
+    updateDeFunc
+    } from "../../module/module.js"
 
 export const userFunc = () => {
     let data = getDataFunc();
@@ -18,8 +24,26 @@ export const userFunc = () => {
         },100)
     })
 
+    // delete coding 
+    const deleteFunc = () => {
+        let allDelBtn = document.querySelectorAll('.delete-btn')
+        allDelBtn.forEach((btn,index) => {
+            btn.onclick = async () =>{
+                let confirm = await isConfirmFunc()
+                if(confirm)
+                {
+                    users.splice(index,1);
+                    readUserFunc();
+                    updateDeFunc(users, 'users');
+                } 
+                
+            }
+        })
+    }
+
     // read data form DB or local storage
     const readUserFunc = () => {
+        usersList.innerHTML = ''
         users.forEach( (item, index) => {
             usersList.innerHTML += `
             <div class="p-4 bg-white shadow-sm">
@@ -45,7 +69,7 @@ export const userFunc = () => {
                                 Edit
                                 <i class="fa fa-edit"></i>
                             </button>
-                            <button class="flex items-center justify-between dropdown-item text-red-600">
+                            <button class="delete-btn flex items-center justify-between dropdown-item text-red-600">
                                 Delete
                                 <i class="fa fa-trash"></i>
                             </button>
@@ -60,7 +84,7 @@ export const userFunc = () => {
                         <h5>Payments</h5>
                     </div>
                     <div>
-                        <h5 class="text-gray-500 font-semibold">12000</h5>
+                        <h5 class="text-gray-500 font-semibold"><h5>${item.price || '--'}</h5>
                     </div>
                 </div>
                 <div class="flex justify-between items-center mt-4">
@@ -103,10 +127,10 @@ export const userFunc = () => {
                             <i class="fa-regular fa-envelope"></i>
                         </button>
                         <div class="border-b w-full"></div>
-                        <button class="btn bg-red-50 text-red-600 rounded-full">
+                        <button class="btn bg-red-50 text-red-600 rounded-full ${item.status ? 'd-none' : ''}">
                             <i class="fa-solid fa-ban"></i>
                         </button>
-                        <button class="btn d-none bg-green-50 text-green-600 rounded-full">
+                        <button class="btn bg-green-50 text-green-600 rounded-full  ${item.status ? '' : 'd-none'}">
                             <i class="fa-solid fa-check"></i>
                         </button>
                     </div>
@@ -115,8 +139,11 @@ export const userFunc = () => {
             </div>
             `
         });
+        deleteFunc()
     }
 
     readUserFunc()
+
+    
 
 }

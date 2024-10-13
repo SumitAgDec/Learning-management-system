@@ -39,6 +39,12 @@ export const processImage = (img) => {
     })
 }
 
+//update coding
+export const updateDeFunc = (array, key) => {
+    data[key] = array
+    localStorage.setItem('data', JSON.stringify(data))
+}
+
 // register your data on local storage
 export const registerFunc = async (form, array, key) => {
     let formData = new FormData(form)
@@ -83,4 +89,28 @@ export const  createOptionsFunc = (data, element) => {
         <option value=${item.category}>${item.category}</option>
         `
     });
+}
+
+// confirmation coding 
+export const isConfirmFunc = () => {
+    return new Promise((resolve, reject)=>{
+        swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+        .then((willDelete) => {
+        if (willDelete) {
+            resolve(true)
+            swal("Poof! Your imaginary file has been deleted!", {
+            icon: "success",
+            });
+        } else {
+            return false
+            swal("Your imaginary file is safe!");
+        }
+        });
+    })
 }

@@ -90,15 +90,29 @@ const users = `
                         </div>
 
                         <div class="row mb-3">
-                            <div class="col-6">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="name">
+                                        Select Courses <sup class="text-red-500">*</sup>
+                                    </label>
+                                    <select class="form-select" name="course" multiple>
+                                        <option value="nodejs">Node js</option>
+                                        <option value="reactjs">React js</option>
+                                        <option value="php">Php</option>
+                                        <option value="javascript">Javascript</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3 items-center">
+                            <div class="col-6 flex gap-3">
                                 <div class="form-group">
                                     <input type="checkbox" name="status">
                                     <label for="name">
                                         Is active
                                     </label>
                                 </div>
-                            </div>
-                            <div class="col-6 flex gap-3">
                                 <div class="form-group">
                                     <input type="radio" name="type" value="admin">
                                     <label for="name">
@@ -118,21 +132,8 @@ const users = `
                                     </label>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-12">
-                                <div class="form-group">
-                                    <label for="name">
-                                        Select Courses <sup class="text-red-500">*</sup>
-                                    </label>
-                                    <select class="form-select" name="course" multiple>
-                                        <option value="nodejs">Node js</option>
-                                        <option value="reactjs">React js</option>
-                                        <option value="php">Php</option>
-                                        <option value="javascript">Javascript</option>
-                                    </select>
-                                </div>
+                            <div class="col-6 ">
+                                <input type="number" name="price" placeholder="Price" class="form-control">
                             </div>
                         </div>
 
