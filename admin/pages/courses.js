@@ -5,7 +5,7 @@ const courses = `
             <div class="flex border-b pb-2 justify-between items-center">
                 <h5 class="text-xl font-semibold">Course list</h5>
                 <button data-bs-toggle="modal" data-bs-target="#course-modal"
-                    class="btn bg-red-400 rounded-full text-white">
+                    class="add-course-btn btn bg-red-400 rounded-full text-white">
                     <i class="fa fa-plus"></i>
                 </button>
             </div>
@@ -35,7 +35,7 @@ const courses = `
             <div class="flex border-b pb-2 justify-between items-center">
                 <h5 class="text-xl font-semibold">Category list</h5>
                 <button data-bs-toggle="modal" data-bs-target="#category-modal"
-                    class="btn bg-red-400 rounded-full text-white">
+                    class="add-category-btn btn bg-red-400 rounded-full text-white">
                     <i class="fa fa-plus"></i>
                 </button>
             </div>
@@ -74,7 +74,7 @@ const courses = `
                                     <label for="thub">
                                         Thumbnail
                                     </label>
-                                    <input name="thumbnail" type="file" class="form-control">
+                                    <input name="profile" type="file" class="form-control">
                                 </div>
                             </div>
                             <div class="col-6">

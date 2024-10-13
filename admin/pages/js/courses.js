@@ -85,7 +85,11 @@ export const courseFunc = () => {
     let courseForm = courseEl.querySelector(".course-form")
     let courseCategory = courseForm.querySelector('.course-category')
     let courseList = courseEl.querySelector(".course-list")
-    
+    let addCourseModal = courseEl.querySelector(".add-course-btn")
+    let allFormInput = courseForm.querySelectorAll("input")
+    let allFormSelect = courseForm.querySelectorAll("select")
+    let allFormTextArea = courseForm.querySelector("textarea")
+    let allFormBtn = courseForm.querySelectorAll("button")
 
     //store course coding
     courseForm.addEventListener('submit', function(e){
@@ -114,15 +118,45 @@ export const courseFunc = () => {
             }
         });
     }
+
+    //edit coding
+    const editFunc = () => {
+        let editBtn = courseList.querySelectorAll(".edit-btn")
+        editBtn.forEach((btn, index) => {
+            btn.onclick = () => {
+                addCourseModal.click()
+                let string = btn.getAttribute('data')
+                let data = JSON.parse(string); 
+                allFormInput[1].value = data.name
+                allFormInput[2].value = data.link
+                allFormInput[3].value = data.price
+                data.live ? allFormInput[4].checked = true : allFormInput[4].checked = false
+                data.free ? allFormInput[5].checked = true : allFormInput[5].checked = false
+                allFormSelect[0].value = data.category
+                allFormSelect[1].value = data.duration
+                allFormTextArea.value = data.desc
+                
+                allFormBtn[1].classList.add('d-none')
+                allFormBtn[2].classList.remove('d-none')
+                allFormBtn[2].onclick = () =>{
+                    registerFunc(courseForm, courses, 'courses', index)
+                    window.location.reload()
+                    btnClose.click();
+                }
+            }
+        })
+        
+    }
     
     // read course coding
     const readCoursFunc = () => {
         courseList.innerHTML = ''
         courses.forEach((item, index)=>{
+            let itemString = JSON.stringify(item);
             courseList.innerHTML += `
             <tr>
                 <td>${index + 1}</td>
-                <td class="text-nowrap"><img src=${item.thumbnail} width="40px" alt=""></td>
+                <td class="text-nowrap"><img src=${item.profile} width="40px" alt=""></td>
                 <td class="text-nowrap">${item.name}</td>
                 <td class="text-nowrap">${item.category}</td>
                 <td class="text-nowrap"><a href="${item.link}">Link</a></td>
@@ -130,7 +164,7 @@ export const courseFunc = () => {
                 <td class="text-nowrap">${item.duration}</td>
                 <td class="text-nowrap">${formateDateFunc(item.createdAt)}</td>
                 <td class="text-nowrap">
-                    <button class="edit-btn text-green-300">
+                    <button data='${itemString}' class="edit-btn text-green-300">
                         <i class="fa-regular fa-pen-to-square"></i>
                     </button>
                     <button class="del-btn text-red-300">
@@ -141,6 +175,7 @@ export const courseFunc = () => {
             `
         });
         delCourseFunc()
+        editFunc()
     }
 
     readCoursFunc()
