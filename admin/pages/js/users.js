@@ -10,10 +10,16 @@ export const userFunc = () => {
     let data = getDataFunc();
     let users = data ? data.users ? data.users : [] : [];
     let usersEl = document.querySelector('.users')
+    let openModalBtn = usersEl.querySelector('.open-modal')
     let modal = usersEl.querySelector('#users-modal')
     let btnClose = modal.querySelector(".btn-close")
     let usersForm = usersEl.querySelector('.users-form')
     let usersList = usersEl.querySelector(".users-list")
+    let allFormInput = usersForm.querySelectorAll('input') 
+    let allFormSelect = usersForm.querySelectorAll('select')
+    let allFormText = usersForm.querySelector('textarea')
+    let allFormBtn = usersForm.querySelectorAll("button")
+
     // send data to DB or local storage
     usersForm.addEventListener('submit', function(e){
         e.preventDefault();
@@ -41,10 +47,50 @@ export const userFunc = () => {
         })
     }
 
+    //edit coding
+    const editFunc = () => {
+        let editBtn = usersList.querySelectorAll(".edit-btn")
+        editBtn.forEach((btn, index) => {
+            btn.onclick = () => {
+                openModalBtn.click()
+                let string = btn.getAttribute('data')
+                let data = JSON.parse(string); 
+                // allFormInput[0].value = data.profile
+                allFormInput[1].value = data.name
+                allFormInput[2].value = data.mobile
+                allFormInput[3].value = data.email
+                allFormInput[4].value = data.password
+                allFormInput[5].value = data.father
+                data.status ? allFormInput[6].checked = true : allFormInput[6].checked = true
+                data.type == 'admin' ? allFormInput[7].checked = true : allFormInput[7].checked = false
+                data.type == 'teacher' ? allFormInput[8].checked = true : allFormInput[8].checked = false;
+                data.type == 'user' ? allFormInput[9].checked = true : allFormInput[9].checked = true
+                allFormInput[10].value = data.price
+                allFormSelect[0].value = data.qualification
+                let options = allFormSelect[1].querySelectorAll("option")
+                options.forEach((op, index)=>{
+                    if(data.course.includes(op.value)){
+                        op.selected = true
+                    }
+                })
+                allFormText.value = data.address
+                allFormBtn[1].classList.add('d-none')
+                allFormBtn[2].classList.remove('d-none')
+                allFormBtn[2].onclick = () =>{
+                    registerFunc(usersForm, users, 'users', index)
+                    window.location.reload()
+                    btnClose.click();
+                }
+            }
+        })
+        
+    }
+
     // read data form DB or local storage
     const readUserFunc = () => {
         usersList.innerHTML = ''
         users.forEach( (item, index) => {
+            let itemString = JSON.stringify(item);
             usersList.innerHTML += `
             <div class="p-4 bg-white shadow-sm">
                 <div class="flex border-b py-3 justify-between items-center">
@@ -65,7 +111,7 @@ export const userFunc = () => {
                             <i class="fa-solid fa-ellipsis-vertical"></i>
                         </button>
                         <div class="dropdown-menu">
-                            <button class="flex items-center justify-between dropdown-item text-blue-600">
+                            <button data='${itemString}' class="edit-btn flex items-center justify-between dropdown-item text-blue-600">
                                 Edit
                                 <i class="fa fa-edit"></i>
                             </button>
@@ -139,6 +185,7 @@ export const userFunc = () => {
             </div>
             `
         });
+        editFunc()
         deleteFunc()
     }
 

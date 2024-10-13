@@ -2,8 +2,8 @@ const users = `
 <div class="users">
     <div class="users-list animate__animated animate__zoomIn grid md:grid-cols-3 gap-4">
     </div>
-    <button data-bs-toggle="modal" data-bs-target="#users-modal"
-        class="position-fixed bottom-0 right-0 m-16 bg-red-500 text-white btn w-11 h-11 rounded-full">
+    <button  data-bs-toggle="modal" data-bs-target="#users-modal"
+        class="open-modal position-fixed bottom-0 right-0 m-16 bg-red-500 text-white btn w-11 h-11 rounded-full">
         <i class="fa fa-add"></i>
     </button>
 

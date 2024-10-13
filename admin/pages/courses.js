@@ -47,7 +47,6 @@ const courses = `
                             <th class="text-nowrap">Category</th>
                             <th class="text-nowrap">Created At</th>
                             <th class="text-nowrap">Actions</th>
-
                         </tr>
                     </thead>
                     <tbody class="category-list">

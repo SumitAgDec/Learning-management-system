@@ -23,19 +23,36 @@ export const formateDateFunc = (date, isTime) => {
 }
 
 // image process coding
-export const processImage = (img) => {
+export const processImage = (img, array, index) => {
+    let data = array[index]
     return new Promise((resolve, reject)=>{
-        if(img.name){
-            let fReader = new FileReader()
-            fReader.readAsDataURL(img)
-            fReader.onload = (e) =>{
-                let url = e.target.result
-                resolve(url)
+        if(index == undefined){
+            if(img.name){
+                let fReader = new FileReader()
+                fReader.readAsDataURL(img)
+                fReader.onload = (e) =>{
+                    let url = e.target.result
+                    resolve(url)
+                }
+            }
+            else {
+                return resolve("../../assets/images/avatar-4.svg")
             }
         }
         else {
-            return resolve("../../assets/images/avatar-4.svg")
+            if(img.name){
+                let fReader = new FileReader()
+                fReader.readAsDataURL(img)
+                fReader.onload = (e) =>{
+                    let url = e.target.result
+                    resolve(url)
+                }
+            }
+            else {
+                return resolve(data.profile )
+            }
         }
+        
     })
 }
 
@@ -46,7 +63,7 @@ export const updateDeFunc = (array, key) => {
 }
 
 // register your data on local storage
-export const registerFunc = async (form, array, key) => {
+export const registerFunc = async (form, array, key, index) => {
     let formData = new FormData(form)
     let courses = []
     let tmp = {
@@ -57,7 +74,7 @@ export const registerFunc = async (form, array, key) => {
         let props = data[0]
         let value = data[1]
 
-        let imgUrl = typeof(value) == 'object' && await processImage(value)
+        let imgUrl = typeof(value) == 'object' && await processImage(value, array, index)
 
         props == 'course' && courses.push(value)
         if( props == 'course'){
@@ -71,14 +88,25 @@ export const registerFunc = async (form, array, key) => {
         }
         
     }
-    array.push(tmp)
-    data[key] = array
+    if(index == undefined){
+        array.push(tmp)
+        data[key] = array
 
-    // save data in local storage
-    localStorage.setItem('data', JSON.stringify(data))
+        // save data in local storage
+        localStorage.setItem('data', JSON.stringify(data))
 
-    form.reset('');
-    swal("Data inserted", "successfully", 'success');
+        form.reset('');
+        swal("Data inserted", "successfully", 'success');
+    } else {
+        array[index] = tmp
+        data[key] = array
+
+        // save data in local storage
+        localStorage.setItem('data', JSON.stringify(data))
+
+        form.reset('');
+        swal("Data inserted", "successfully", 'success');
+    }
 }
 
 //get data for select tag
