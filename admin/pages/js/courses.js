@@ -22,8 +22,10 @@ export const categoryFunc = () => {
     categoryForm.addEventListener('submit', function(e){
         e.preventDefault()
         registerFunc(categoryForm, category, 'category')
-        btnClose.click();
-        readCatFunc();
+        setTimeout(()=>{
+            btnClose.click();
+            readCatFunc();
+        },100)
         //show category in select
         createOptionsFunc(category, courseCategory)
         
@@ -71,8 +73,10 @@ export const courseFunc = () => {
     courseForm.addEventListener('submit', function(e){
         e.preventDefault()
         registerFunc(courseForm,  courses, 'courses' )
-        btnClose.click();
-        readCoursFunc();
+        setTimeout(()=>{
+            btnClose.click();
+            readCoursFunc();
+        },100)
     })
 
     //show category in select
@@ -85,7 +89,7 @@ export const courseFunc = () => {
             courseList.innerHTML += `
             <tr>
                 <td>${index + 1}</td>
-                <td class="text-nowrap"><img src="/assets/images/javascript.png" width="40px" alt=""></td>
+                <td class="text-nowrap"><img src=${item.thumbnail} width="40px" alt=""></td>
                 <td class="text-nowrap">${item.name}</td>
                 <td class="text-nowrap">${item.category}</td>
                 <td class="text-nowrap"><a href="${item.link}">Link</a></td>
