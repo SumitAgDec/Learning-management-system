@@ -67,7 +67,7 @@ export const registerFunc = async (form, array, key) => {
             tmp[props] = imgUrl
         }
         else{
-            tmp[props] = value.trim()
+            tmp[props] = value.trim().toLowerCase()
         }
         
     }

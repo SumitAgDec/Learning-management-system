@@ -2,7 +2,9 @@ import {
     registerFunc, 
     getDataFunc, 
     formateDateFunc,
-    createOptionsFunc
+    createOptionsFunc,
+    isConfirmFunc,
+    updateDeFunc
 } from "../../module/module.js"
 
 let data = getDataFunc();
@@ -31,6 +33,21 @@ export const categoryFunc = () => {
         
     })
 
+    //delete coding
+    const delCatFunc = () => {
+        let delBtn = categoryList.querySelectorAll(".del-btn")
+        delBtn.forEach( (btn, index) => {
+            btn.onclick = async () => {
+                let cnf = await isConfirmFunc()
+                if(cnf){
+                    category.splice(index,1)
+                    readCatFunc()
+                    updateDeFunc(category, 'category')
+                }
+            }
+        });
+    }
+
     // read cateogry coding
     const readCatFunc = () =>{
         categoryList.innerHTML = '';
@@ -51,10 +68,11 @@ export const categoryFunc = () => {
             </tr>
             `
         });
-        
+        delCatFunc()
     }
 
     readCatFunc()
+
     
 }
 
@@ -81,6 +99,21 @@ export const courseFunc = () => {
 
     //show category in select
     createOptionsFunc(category, courseCategory)
+
+    //delete coding
+    const delCourseFunc = () => {
+        let delBtn = courseList.querySelectorAll(".del-btn")
+        delBtn.forEach( (btn, index) => {
+            btn.onclick = async () => {
+                let cnf = await isConfirmFunc()
+                if(cnf){
+                    courses.splice(index,1)
+                    readCoursFunc()
+                    updateDeFunc(courses, 'courses')
+                }
+            }
+        });
+    }
     
     // read course coding
     const readCoursFunc = () => {
@@ -97,16 +130,17 @@ export const courseFunc = () => {
                 <td class="text-nowrap">${item.duration}</td>
                 <td class="text-nowrap">${formateDateFunc(item.createdAt)}</td>
                 <td class="text-nowrap">
-                    <button class="text-green-300">
+                    <button class="edit-btn text-green-300">
                         <i class="fa-regular fa-pen-to-square"></i>
                     </button>
-                    <button class="text-red-300">
+                    <button class="del-btn text-red-300">
                         <i class="fa-regular fa-trash-can"></i>
                     </button>
                 </td>
             </tr>
             `
-        })
+        });
+        delCourseFunc()
     }
 
     readCoursFunc()
