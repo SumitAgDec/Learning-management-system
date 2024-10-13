@@ -10,6 +10,19 @@ export const getDataFunc = () => {
 
 getDataFunc()
 
+// formate createdAt or date
+export const formateDateFunc = (date, isTime) => {
+    let formateDate = new Date(date);
+    let dd = formateDate.getDate();
+    let mm = formateDate.getMonth()+1;
+    let yyyy = formateDate.getFullYear();
+    let time = formateDate.toLocaleTimeString();
+    dd = dd < 10 ? '0'+dd : dd
+    mm = mm < 10 ? '0'+mm : mm
+    return `${dd}-${mm}-${yyyy} ${isTime ? time : ''}`
+}
+
+// image process coding
 export const processImage = (img) => {
     return new Promise((resolve, reject)=>{
         if(img.name){
@@ -26,10 +39,13 @@ export const processImage = (img) => {
     })
 }
 
+// register your data on local storage
 export const registerFunc = async (form, array, key) => {
     let formData = new FormData(form)
     let courses = []
-    let tmp = {}
+    let tmp = {
+        createdAt : new Date()
+    }
 
     for (let data of formData.entries()){
         let props = data[0]
@@ -45,7 +61,7 @@ export const registerFunc = async (form, array, key) => {
             tmp[props] = imgUrl
         }
         else{
-            tmp[props] = value
+            tmp[props] = value.trim()
         }
         
     }
@@ -57,4 +73,14 @@ export const registerFunc = async (form, array, key) => {
 
     form.reset('');
     swal("Data inserted", "successfully", 'success');
+}
+
+//get data for select tag
+export const  createOptionsFunc = (data, element) => {
+    element.innerHTML = '<option value="choose category">choose-category</option>'
+    data.forEach((item, index) => {
+        element.innerHTML += `
+        <option value=${item.category}>${item.category}</option>
+        `
+    });
 }

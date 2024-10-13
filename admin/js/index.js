@@ -31,6 +31,7 @@ import notFound from "../pages/notFound.js"
 //  import routes form pages / js folder
 import {dashboardFunc} from '../pages/js/dashboard.js'
 import { userFunc } from "../pages/js/users.js"
+import { categoryFunc, courseFunc } from "../pages/js/courses.js"
 
 
 
@@ -51,6 +52,10 @@ const handleRouteChanges = () =>{
     }
     else if ( path == '/users' ){
         userFunc();
+    }
+    else if ( path == '/courses' ){
+        categoryFunc();
+        courseFunc()
     }
 }
 
