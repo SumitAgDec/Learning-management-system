@@ -147,7 +147,7 @@ const courses = `
                     </div>
                     <div class="modal-footer">
                         <button class="btn w-full bg-blue-600 font-semibold text-white">Submit</button>
-                        <button type="button" class="d-none btn w-full bg-red-400 font-semibold">Update</button>
+                        <button type="button" class="d-none btn w-full bg-red-400 font-semibold text-white">Update</button>
                     </div>
                 </div>
             </div>
@@ -172,7 +172,7 @@ const courses = `
                     </div>
                     <div class="modal-footer">
                         <button class="btn w-full bg-blue-600 font-semibold text-white">Submit</button>
-                        <button type="button" class="d-none btn w-full bg-red-400 font-semibold">Update</button>
+                        <button type="button" class="d-none btn w-full bg-red-400 font-semibold text-white">Update</button>
                     </div>
                 </div>
             </div>

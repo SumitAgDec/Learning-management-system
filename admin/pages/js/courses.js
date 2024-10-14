@@ -19,6 +19,9 @@ export const categoryFunc = () => {
     let categoryList = courseEl.querySelector(".category-list")
     let courseForm = courseEl.querySelector(".course-form")
     let courseCategory = courseForm.querySelector('.course-category')
+    let addCategoryModal = courseEl.querySelector(".add-category-btn")
+    let allFormInput = categoryForm.querySelectorAll("input")
+    let allFormBtn = categoryForm.querySelectorAll("button")
 
     // store category coding
     categoryForm.addEventListener('submit', function(e){
@@ -48,17 +51,40 @@ export const categoryFunc = () => {
         });
     }
 
+    //edit coding
+    const editFunc = () => {
+        let editBtn = categoryList.querySelectorAll(".edit-btn")
+        editBtn.forEach((btn, index) => {
+            btn.onclick = () => {
+                addCategoryModal.click()
+                let string = btn.getAttribute('data')
+                let data = JSON.parse(string); 
+                allFormInput[0].value = data.category
+                
+                allFormBtn[1].classList.add('d-none')
+                allFormBtn[2].classList.remove('d-none')
+                allFormBtn[2].onclick = () =>{
+                    registerFunc(categoryForm, category, 'category', index)
+                    window.location.reload()
+                    btnClose.click();
+                }
+            }
+        })
+        
+    }
+
     // read cateogry coding
     const readCatFunc = () =>{
         categoryList.innerHTML = '';
         category.forEach((item, index) => {
+            let itemString = JSON.stringify(item);
             categoryList.innerHTML += `
             <tr>
                 <td class="text-nowrap">${index + 1}</td>
                 <td class="text-nowrap">${item.category}</td>
                 <td class="text-nowrap">${formateDateFunc(item.createdAt)}</td>
                 <td class="text-nowrap">
-                    <button class="edit-btn text-green-300">
+                    <button data='${itemString}' class="edit-btn text-green-300">
                         <i class="fa-regular fa-pen-to-square"></i>
                     </button>
                     <button class="del-btn text-red-300">
@@ -68,7 +94,8 @@ export const categoryFunc = () => {
             </tr>
             `
         });
-        delCatFunc()
+        delCatFunc();
+        editFunc()
     }
 
     readCatFunc()
@@ -131,7 +158,7 @@ export const courseFunc = () => {
                 allFormInput[2].value = data.link
                 allFormInput[3].value = data.price
                 data.live ? allFormInput[4].checked = true : allFormInput[4].checked = false
-                data.free ? allFormInput[5].checked = true : allFormInput[5].checked = false
+                data.free ? allFormInput[5].checked = true : allFormInput[5].checked = false;
                 allFormSelect[0].value = data.category
                 allFormSelect[1].value = data.duration
                 allFormTextArea.value = data.desc

@@ -1,3 +1,5 @@
+import { getDataFunc, formateDateFunc } from "../../module/module.js";
+
 var options = {
   series: [
     {
@@ -95,12 +97,91 @@ var options1 = {
 
 
 export const dashboardFunc = () => {
-  let areaChart = document.querySelector(".area-chart");
-  let columnChart = document.querySelector(".column-chart");
+  // global variable
+  let data = getDataFunc()
+  let users = data ? data.users ? data.users : [] : [];
+  let courses = data ? data.courses ? data.courses : [] : [];
+  let recentUsers = users.slice(0,5)
+  let recentCourses = courses.slice(0,5)
+  let dashboardEl = document.querySelector('.dashboard')
+  let areaChart = dashboardEl.querySelector(".area-chart");
+  let columnChart = dashboardEl.querySelector(".column-chart");
+  let recentStudentsEl = dashboardEl.querySelector(".recent-students")
+  let recentCoursesEl = dashboardEl.querySelector(".recent-courses")
 
+  // create chart coding
   let chart = new ApexCharts(areaChart, options);
   chart.render();
 
   let chart1 = new ApexCharts(columnChart, options1);
   chart1.render();
+
+  //recent student coding
+  recentUsers.forEach((item, index)=>{
+    recentStudentsEl.innerHTML += `
+    <div class="grid grid-cols-4 gap-2 border-b py-2">
+        <img src=${item.profile} alt="">
+        <div class=" col-span-2">
+            <h5 class="mb-1">${item.name}</h5>
+            <p class="text-sm text-gray-400">${formateDateFunc(item.createdAt)}</p>
+        </div>
+        <div class="">
+            ${item.status ? 
+              `
+              <button class="btn bg-green-500 text-white rounded-full w-9 h-9 flex items-center justify-center">
+                <i class="fa-regular fa-circle-check"></i>
+            </button>
+              ` :
+              `
+              <button class="btn bg-red-500 text-white rounded-full w-9 h-9 flex items-center justify-center">
+                <i class="fa-regular fa-circle-xmark"></i>
+            </button>
+              `
+            }
+        </div>
+    </div>
+    `
+  })
+  
+  //recent courses coding
+  recentCourses.forEach((item, index)=>{
+    recentCoursesEl.innerHTML += `
+    <div class="grid grid-cols-4 gap-2 border-b py-2">
+        <img src=${item.profile} class="w-8 h-8 rounded-full" alt="">
+        <div class=" col-span-2">
+            <h5 class="mb-1">${item.name}</h5>
+            <p class="text-sm text-gray-400">${formateDateFunc(item.createdAt)}</p>
+        </div>
+        <div class="">
+        ${item.live ? 
+          `
+          <button class="btn bg-green-500 text-white rounded-full w-9 h-9 flex items-center justify-center">
+            <i class="fa-regular fa-circle-check"></i>
+        </button>
+          ` :
+          `
+          <button class="btn bg-red-500 text-white rounded-full w-9 h-9 flex items-center justify-center">
+            <i class="fa-regular fa-circle-xmark"></i>
+        </button>
+          `
+        }
+        </div>
+    </div>
+    `
+  })
+
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
