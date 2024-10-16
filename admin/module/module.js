@@ -63,7 +63,7 @@ export const updateDeFunc = (array, key) => {
 }
 
 // register your data on local storage
-export const registerFunc = async (form, array, key, index) => {
+export const registerFunc = async (form, array, key, index, readDataFunc) => {
     let formData = new FormData(form)
     let courses = []
     let tmp = {
@@ -106,6 +106,7 @@ export const registerFunc = async (form, array, key, index) => {
 
         form.reset('');
         swal("Data inserted", "successfully", 'success');
+        readDataFunc(array)
     }
 }
 

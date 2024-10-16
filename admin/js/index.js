@@ -27,6 +27,8 @@ import courses from "../pages/courses.js"
 import users from "../pages/users.js"
 import settings from "../pages/settings.js"
 import notFound from "../pages/notFound.js"
+import topics from "../pages/topics.js"
+import chapters from "../pages/chapters.js"
 
 //  import routes form pages / js folder
 import {dashboardFunc} from '../pages/js/dashboard.js'
@@ -38,6 +40,8 @@ import { categoryFunc, courseFunc } from "../pages/js/courses.js"
 const routes = {
     '/' : dashboard,
     '/courses' :courses,
+    '/topics' :topics,
+    '/chapters' :chapters,
     '/users' : users,
     '/settings' : settings
 }

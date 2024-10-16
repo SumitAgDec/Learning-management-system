@@ -1,62 +1,70 @@
 const courses = `
 <div class="courses">
-    <div class="animate__animated animate__zoomIn grid md:grid-cols-5 gap-4">
-        <div class="p-4 table-responsive md:col-span-3 bg-white shadow-sm">
-            <div class="flex border-b pb-2 justify-between items-center">
-                <h5 class="text-xl font-semibold">Course list</h5>
-                <button data-bs-toggle="modal" data-bs-target="#course-modal"
-                    class="add-course-btn btn bg-red-400 rounded-full text-white">
-                    <i class="fa fa-plus"></i>
-                </button>
-            </div>
-            <div class="">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th class="text-nowrap">Sr</th>
-                            <th class="text-nowrap">Thubnail</th>
-                            <th class="text-nowrap">Category</th>
-                            <th class="text-nowrap">Course Name</th>
-                            <th class="text-nowrap">Course Link</th>
-                            <th class="text-nowrap">Price</th>
-                            <th class="text-nowrap">Duration</th>
-                            <th class="text-nowrap">Created At</th>
-                            <th class="text-nowrap">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody class="course-list">
-                        
-                    </tbody>
-                </table>
-
+    <div class="grid gap-4 animate__animated animate__zoomIn">
+        <div class="grid">
+            <div class="p-4 table-responsive md:col-span-2 bg-white shadow-sm">
+                <div class="flex border-b pb-2 justify-between items-center">
+                    <h5 class="text-xl font-semibold">Category list</h5>
+                    <button data-bs-toggle="modal" data-bs-target="#category-modal"
+                        class="add-category-btn btn bg-red-400 rounded-full text-white">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                </div>
+                <div class="">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-nowrap">Sr</th>
+                                <th class="text-nowrap">Category</th>
+                                <th class="text-nowrap">Created At</th>
+                                <th class="text-nowrap">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="category-list">
+                            
+                        </tbody>
+                    </table>
+    
+                </div>
             </div>
         </div>
-        <div class="p-4 table-responsive md:col-span-2 bg-white shadow-sm">
-            <div class="flex border-b pb-2 justify-between items-center">
-                <h5 class="text-xl font-semibold">Category list</h5>
-                <button data-bs-toggle="modal" data-bs-target="#category-modal"
-                    class="add-category-btn btn bg-red-400 rounded-full text-white">
-                    <i class="fa fa-plus"></i>
-                </button>
-            </div>
-            <div class="">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th class="text-nowrap">Sr</th>
-                            <th class="text-nowrap">Category</th>
-                            <th class="text-nowrap">Created At</th>
-                            <th class="text-nowrap">Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody class="category-list">
-                        
-                    </tbody>
-                </table>
-
+        <div class="grid">
+            <div class="p-4 table-responsive md:col-span-3 bg-white shadow-sm">
+                <div class="grid md:grid-cols-3 border-b pb-3 justify-between items-center">
+                    <h5 class="text-xl font-semibold">Course list</h5>
+                    <select class="course-cat-select form-select">
+                        <option value="choose category">Choose category</option>
+                    </select>
+                    <div class="text-right">
+                        <button data-bs-toggle="modal" data-bs-target="#course-modal"
+                            class="add-course-btn btn bg-red-400 rounded-full text-white">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-nowrap">Sr</th>
+                                <th class="text-nowrap">Thubnail</th>
+                                <th class="text-nowrap">Category</th>
+                                <th class="text-nowrap">Course Name</th>
+                                <th class="text-nowrap">Course Link</th>
+                                <th class="text-nowrap">Price</th>
+                                <th class="text-nowrap">Duration</th>
+                                <th class="text-nowrap">Created At</th>
+                                <th class="text-nowrap">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="course-list">
+                            
+                        </tbody>
+                    </table>
+    
+                </div>
             </div>
         </div>
-
     </div>
 
     <form class="course-form">
@@ -97,11 +105,7 @@ const courses = `
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
-                                    <select name="duration" class="form-select">
-                                        <option value="choose duration">choose-duration</option>
-                                        <option value="4 month">4 month</option>
-                                        <option value="6 month">6 month</option>
-                                    </select>
+                                    <input type="text" placeholder="Enter Duration" name="duration" class="form-control">
                                 </div>
                             </div>
                         </div>

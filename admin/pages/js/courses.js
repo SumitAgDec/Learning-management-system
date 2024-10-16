@@ -29,7 +29,7 @@ export const categoryFunc = () => {
         registerFunc(categoryForm, category, 'category')
         setTimeout(()=>{
             btnClose.click();
-            readCatFunc();
+            readCatFunc(category);
         },100)
         //show category in select
         createOptionsFunc(category, courseCategory)
@@ -44,7 +44,7 @@ export const categoryFunc = () => {
                 let cnf = await isConfirmFunc()
                 if(cnf){
                     category.splice(index,1)
-                    readCatFunc()
+                    readCatFunc(category);
                     updateDeFunc(category, 'category')
                 }
             }
@@ -64,8 +64,7 @@ export const categoryFunc = () => {
                 allFormBtn[1].classList.add('d-none')
                 allFormBtn[2].classList.remove('d-none')
                 allFormBtn[2].onclick = () =>{
-                    registerFunc(categoryForm, category, 'category', index)
-                    window.location.reload()
+                    registerFunc(categoryForm, category, 'category', index, readCatFunc)
                     btnClose.click();
                 }
             }
@@ -74,9 +73,9 @@ export const categoryFunc = () => {
     }
 
     // read cateogry coding
-    const readCatFunc = () =>{
+    const readCatFunc = (array) =>{
         categoryList.innerHTML = '';
-        category.forEach((item, index) => {
+        array.forEach((item, index) => {
             let itemString = JSON.stringify(item);
             categoryList.innerHTML += `
             <tr>
@@ -98,7 +97,7 @@ export const categoryFunc = () => {
         editFunc()
     }
 
-    readCatFunc()
+    readCatFunc(category)
 
     
 }
@@ -114,9 +113,10 @@ export const courseFunc = () => {
     let courseList = courseEl.querySelector(".course-list")
     let addCourseModal = courseEl.querySelector(".add-course-btn")
     let allFormInput = courseForm.querySelectorAll("input")
-    let allFormSelect = courseForm.querySelectorAll("select")
+    let allFormSelect = courseForm.querySelector("select")
     let allFormTextArea = courseForm.querySelector("textarea")
     let allFormBtn = courseForm.querySelectorAll("button")
+    let courseCatSEl =courseEl.querySelector('.course-cat-select')
 
     //store course coding
     courseForm.addEventListener('submit', function(e){
@@ -124,12 +124,15 @@ export const courseFunc = () => {
         registerFunc(courseForm,  courses, 'courses' )
         setTimeout(()=>{
             btnClose.click();
-            readCoursFunc();
+            readCoursFunc(courses);
         },100)
     })
 
     //show category in select
     createOptionsFunc(category, courseCategory)
+
+    //choose category select
+    createOptionsFunc(category, courseCatSEl)
 
     //delete coding
     const delCourseFunc = () => {
@@ -139,7 +142,7 @@ export const courseFunc = () => {
                 let cnf = await isConfirmFunc()
                 if(cnf){
                     courses.splice(index,1)
-                    readCoursFunc()
+                    readCoursFunc(courses)
                     updateDeFunc(courses, 'courses')
                 }
             }
@@ -155,19 +158,20 @@ export const courseFunc = () => {
                 let string = btn.getAttribute('data')
                 let data = JSON.parse(string); 
                 allFormInput[1].value = data.name
-                allFormInput[2].value = data.link
-                allFormInput[3].value = data.price
-                data.live ? allFormInput[4].checked = true : allFormInput[4].checked = false
-                data.free ? allFormInput[5].checked = true : allFormInput[5].checked = false;
-                allFormSelect[0].value = data.category
-                allFormSelect[1].value = data.duration
+                allFormInput[2].value = data.duration
+                allFormInput[3].value = data.link
+                allFormInput[4].value = data.price
+                data.live ? allFormInput[5].checked = true : allFormInput[5].checked = false
+                data.free ? allFormInput[6].checked = true : allFormInput[6].checked = false;
+                allFormSelect.value = data.category
                 allFormTextArea.value = data.desc
                 
                 allFormBtn[1].classList.add('d-none')
                 allFormBtn[2].classList.remove('d-none')
                 allFormBtn[2].onclick = () =>{
-                    registerFunc(courseForm, courses, 'courses', index)
-                    window.location.reload()
+                    registerFunc(courseForm, courses, 'courses', index, readCoursFunc)
+                    // window.location.reload()
+                    
                     btnClose.click();
                 }
             }
@@ -176,9 +180,9 @@ export const courseFunc = () => {
     }
     
     // read course coding
-    const readCoursFunc = () => {
+    const readCoursFunc = (array) => {
         courseList.innerHTML = ''
-        courses.forEach((item, index)=>{
+        array.forEach((item, index)=>{
             let itemString = JSON.stringify(item);
             courseList.innerHTML += `
             <tr>
@@ -205,6 +209,6 @@ export const courseFunc = () => {
         editFunc()
     }
 
-    readCoursFunc()
+    readCoursFunc(courses)
     
 }
