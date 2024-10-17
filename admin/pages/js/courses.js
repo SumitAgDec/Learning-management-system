@@ -129,10 +129,10 @@ export const courseFunc = () => {
     })
 
     //show category in select
-    createOptionsFunc(category, courseCategory)
+    createOptionsFunc(category, courseCategory, "category")
 
     //choose category select
-    createOptionsFunc(category, courseCatSEl)
+    createOptionsFunc(category, courseCatSEl, "category")
 
     //delete coding
     const delCourseFunc = () => {

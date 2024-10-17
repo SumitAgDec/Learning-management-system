@@ -13,7 +13,7 @@ const topics = `
                         </select>
                         <div class="text-right">
                             <button data-bs-toggle="modal" data-bs-target="#topics-modal"
-                                class="add-chapter-btn btn bg-red-400 rounded-full text-white">
+                                class="add-topic-btn btn bg-red-400 rounded-full text-white">
                                 <i class="fa fa-plus"></i>
                             </button>
                         </div>
@@ -31,7 +31,7 @@ const topics = `
                                     <th class="text-nowrap">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody class="category-list">
+                            <tbody class="topics-list">
 
                             </tbody>
                         </table>

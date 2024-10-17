@@ -111,11 +111,11 @@ export const registerFunc = async (form, array, key, index, readDataFunc) => {
 }
 
 //get data for select tag
-export const  createOptionsFunc = (data, element) => {
+export const  createOptionsFunc = (data, element, key) => {
     element.innerHTML = '<option value="choose category">choose-category</option>'
     data.forEach((item, index) => {
         element.innerHTML += `
-        <option value=${item.category}>${item.category}</option>
+        <option value=${item[key]}>${item[key]}</option>
         `
     });
 }
