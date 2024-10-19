@@ -19,16 +19,34 @@ export const userFunc = () => {
     let allFormSelect = usersForm.querySelectorAll('select')
     let allFormText = usersForm.querySelector('textarea')
     let allFormBtn = usersForm.querySelectorAll("button")
+    let togglePBtn = usersForm.querySelector(".toggle-p-btn")
 
     // send data to DB or local storage
     usersForm.addEventListener('submit', function(e){
         e.preventDefault();
-        registerFunc(usersForm, users, 'users');
-        setTimeout(()=>{
-            btnClose.click();
-            readUserFunc();
-        },100)
+        let email = users.find((item)=> item.email == allFormInput[3].value.trim().toLowerCase())
+        if( email == undefined ){
+            registerFunc(usersForm, users, 'users');
+            setTimeout(()=>{
+                btnClose.click();
+                readUserFunc(users);
+            },100)
+        } else{
+            swal("User Exist", 'This user is already existed', 'warning')
+        }
     })
+
+    // toggle password
+    togglePBtn.onclick = () =>{
+        if(allFormInput[4].type == 'password'){
+            allFormInput[4].type = 'text'
+            togglePBtn.innerHTML = `<i class="fa fa-eye"></i>`
+        }
+        else{
+            allFormInput[4].type = 'password'
+            togglePBtn.innerHTML = `<i class="fa fa-eye-slash"></i>`
+        }
+    }
 
     // delete coding 
     const deleteFunc = () => {
@@ -39,12 +57,19 @@ export const userFunc = () => {
                 if(confirm)
                 {
                     users.splice(index,1);
-                    readUserFunc();
+                    readUserFunc(users);
                     updateDeFunc(users, 'users');
                 } 
                 
             }
         })
+    }
+
+    // reset form and btn
+    btnClose.onclick = () => {
+        allFormBtn[1].classList.remove('d-none')
+        allFormBtn[2].classList.add('d-none')
+        usersForm.reset('')
     }
 
     //edit coding
@@ -69,7 +94,7 @@ export const userFunc = () => {
                 allFormSelect[0].value = data.qualification
                 let options = allFormSelect[1].querySelectorAll("option")
                 options.forEach((op, index)=>{
-                    if(data.course.includes(op.value)){
+                    if(data.course && data.course.includes(op.value)){
                         op.selected = true
                     }
                 })
@@ -77,8 +102,8 @@ export const userFunc = () => {
                 allFormBtn[1].classList.add('d-none')
                 allFormBtn[2].classList.remove('d-none')
                 allFormBtn[2].onclick = () =>{
-                    registerFunc(usersForm, users, 'users', index)
-                    window.location.reload()
+                    registerFunc(usersForm, users, 'users', index, readUserFunc)
+                    // window.location.reload()
                     btnClose.click();
                 }
             }
@@ -87,9 +112,9 @@ export const userFunc = () => {
     }
 
     // read data form DB or local storage
-    const readUserFunc = () => {
+    const readUserFunc = (array) => {
         usersList.innerHTML = ''
-        users.forEach( (item, index) => {
+        array.forEach( (item, index) => {
             let itemString = JSON.stringify(item);
             usersList.innerHTML += `
             <div class="p-4 bg-white shadow-sm">
@@ -141,7 +166,7 @@ export const userFunc = () => {
                         <h5>Total course</h5>
                     </div>
                     <div>
-                        <h5 class="text-gray-500 font-semibold">${item.course.length}</h5>
+                        <h5 class="text-gray-500 font-semibold">${item.course ? item.course.length : '0'}</h5>
                     </div>
                 </div>
                 <div class="flex justify-between items-center mt-4">
@@ -163,7 +188,7 @@ export const userFunc = () => {
                         <h5>Type</h5>
                     </div>
                     <div>
-                        <h5 class="text-gray-500 font-semibold">${item.type}</h5>
+                        <h5 class="text-gray-500 font-semibold">${item.type ? item.type : 'none'}</h5>
                     </div>
                 </div>
                 <div class="flex justify-between items-center">
@@ -189,7 +214,7 @@ export const userFunc = () => {
         deleteFunc()
     }
 
-    readUserFunc()
+    readUserFunc(users)
 
     
 

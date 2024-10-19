@@ -26,11 +26,16 @@ export const categoryFunc = () => {
     // store category coding
     categoryForm.addEventListener('submit', function(e){
         e.preventDefault()
-        registerFunc(categoryForm, category, 'category')
-        setTimeout(()=>{
-            btnClose.click();
-            readCatFunc(category);
-        },100)
+        let cat = category.find((item)=> item.category == allFormInput[0].value.trim().toLowerCase())
+        if( cat == undefined ){
+            registerFunc(categoryForm, category, 'category')
+            setTimeout(()=>{
+                btnClose.click();
+                readCatFunc(category);
+            },100)
+        } else{
+            swal("Category Exist", 'This category is already existed', 'warning')
+        }
         //show category in select
         createOptionsFunc(category, courseCategory)
         
@@ -70,6 +75,13 @@ export const categoryFunc = () => {
             }
         })
         
+    }
+
+    // reset form and btn
+    btnClose.onclick = () => {
+        allFormBtn[1].classList.remove('d-none')
+        allFormBtn[2].classList.add('d-none')
+        categoryForm.reset('')
     }
 
     // read cateogry coding
@@ -121,11 +133,16 @@ export const courseFunc = () => {
     //store course coding
     courseForm.addEventListener('submit', function(e){
         e.preventDefault()
-        registerFunc(courseForm,  courses, 'courses' )
-        setTimeout(()=>{
-            btnClose.click();
-            readCoursFunc(courses);
-        },100)
+        let course = courses.find((item)=> item.name == allFormInput[1].value.trim().toLowerCase())
+        if( course == undefined ){
+            registerFunc(courseForm,  courses, 'courses' )
+            setTimeout(()=>{
+                btnClose.click();
+                readCoursFunc(courses);
+            },100)
+        } else{
+            swal("Course Exist", 'This course is already existed', 'warning')
+        }
     })
 
     //show category in select
@@ -134,11 +151,19 @@ export const courseFunc = () => {
     //choose category select
     createOptionsFunc(category, courseCatSEl, "category")
 
+    //filter data for page
+    courseCatSEl.onchange = () => {
+        let tmp = courses.map((item,index)=>({...item,index:index}))
+        let filter = tmp.filter((item)=>item.category == courseCatSEl.value)
+        readCoursFunc(filter);
+    }
+
     //delete coding
     const delCourseFunc = () => {
         let delBtn = courseList.querySelectorAll(".del-btn")
-        delBtn.forEach( (btn, index) => {
+        delBtn.forEach( (btn) => {
             btn.onclick = async () => {
+                let index = btn.getAttribute("index")
                 let cnf = await isConfirmFunc()
                 if(cnf){
                     courses.splice(index,1)
@@ -152,9 +177,10 @@ export const courseFunc = () => {
     //edit coding
     const editFunc = () => {
         let editBtn = courseList.querySelectorAll(".edit-btn")
-        editBtn.forEach((btn, index) => {
+        editBtn.forEach((btn) => {
             btn.onclick = () => {
                 addCourseModal.click()
+                let index = btn.getAttribute("index")
                 let string = btn.getAttribute('data')
                 let data = JSON.parse(string); 
                 allFormInput[1].value = data.name
@@ -178,6 +204,13 @@ export const courseFunc = () => {
         })
         
     }
+
+    // reset form and btn
+    btnClose.onclick = () => {
+        allFormBtn[1].classList.remove('d-none')
+        allFormBtn[2].classList.add('d-none')
+        courseForm.reset('')
+    }
     
     // read course coding
     const readCoursFunc = (array) => {
@@ -195,10 +228,10 @@ export const courseFunc = () => {
                 <td class="text-nowrap">${item.duration}</td>
                 <td class="text-nowrap">${formateDateFunc(item.createdAt)}</td>
                 <td class="text-nowrap">
-                    <button data='${itemString}' class="edit-btn text-green-300">
+                    <button index="${item.index ? item.index : index}" data='${itemString}' class="edit-btn text-green-300">
                         <i class="fa-regular fa-pen-to-square"></i>
                     </button>
-                    <button class="del-btn text-red-300">
+                    <button index="${item.index ? item.index : index}" class="del-btn text-red-300">
                         <i class="fa-regular fa-trash-can"></i>
                     </button>
                 </td>

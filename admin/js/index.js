@@ -35,6 +35,7 @@ import {dashboardFunc} from '../pages/js/dashboard.js'
 import { userFunc } from "../pages/js/users.js"
 import { categoryFunc, courseFunc } from "../pages/js/courses.js"
 import { topicFunc } from "../pages/js/topics.js"
+import { chapterFunc } from "../pages/js/chapters.js"
 
 
 
@@ -64,6 +65,9 @@ const handleRouteChanges = () =>{
     }
     else if ( path == '/topics' ){
         topicFunc();
+    }
+    else if ( path == '/chapters' ){
+        chapterFunc();
     }
 }
 

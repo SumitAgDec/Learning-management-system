@@ -1,5 +1,5 @@
 const chapters = `
-    <div class="topics">
+    <div class="chapters">
         <div class="grid gap-4 animate__animated animate__zoomIn">
             <div class="grid">
                 <div class="p-4 table-responsive md:col-span-2 bg-white shadow-sm">
@@ -15,7 +15,7 @@ const chapters = `
                             <option hidden value="choose topic">Choose topic</option>
                         </select>
                         <div class="text-right">
-                            <button data-bs-toggle="modal" data-bs-target="#topics-modal"
+                            <button data-bs-toggle="modal" data-bs-target="#chapter-modal"
                                 class="add-chapter-btn btn bg-red-400 rounded-full text-white">
                                 <i class="fa fa-plus"></i>
                             </button>
@@ -37,7 +37,7 @@ const chapters = `
                                     <th class="text-nowrap">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody class="category-list">
+                            <tbody class="chapter-list">
 
                             </tbody>
                         </table>
@@ -48,7 +48,7 @@ const chapters = `
         </div>
 
         <form class="chapter-form">
-            <div class="modal animate__animated animate__zoomIn" id="topics-modal">
+            <div class="modal animate__animated animate__zoomIn" id="chapter-modal">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">

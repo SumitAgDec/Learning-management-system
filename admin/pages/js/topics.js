@@ -30,32 +30,56 @@ export const topicFunc = () => {
     //store course coding
     topicForm.addEventListener('submit', function(e){
         e.preventDefault()
-        registerFunc(topicForm,  topics, 'topics' )
-        setTimeout(()=>{
+        let topic = topics.find((item)=>{
+            return (
+                item.course[0] == allFormSelect[1].value &&
+                item.name == allFormInput[0].value.trim().toLowerCase()
+            )
+        })
+        if( topic == undefined ){
+            registerFunc(topicForm,  topics, 'topics' )
+            setTimeout(()=>{
             btnClose.click();
             readTopicFunc(topics);
-        },100)
+            },100)
+        } else{
+            swal("Topic Exits", 'This topic is already existed', 'warning')
+        }
     })
 
-    //show category in select
+    //show category in form select
     createOptionsFunc(category, topicCatEl, "category")
+
+    // show category in page select
     createOptionsFunc(category, topicCatSEl, "category")
+
+    //filter course in form select
     topicCatEl.onchange = () =>{
         let filter = courses.filter((item)=>(item.category == topicCatEl.value) )
         console.log(filter);
         createOptionsFunc(filter, topicCourseEl, "name")
     }
+
+    //filter course in page selectx
     topicCatSEl.onchange = () =>{
         let filter = courses.filter((item)=>(item.category == topicCatSEl.value) )
         console.log(filter);
         createOptionsFunc(filter, topicCourseSEl, "name")
     }
 
+    //filter data for page
+    topicCourseSEl.onchange = () => {
+        let tmp = topics.map((item,index)=>({...item,index:index}))
+        let filter = tmp.filter((item)=>item.course == topicCourseSEl.value)
+        readTopicFunc(filter);
+    }
+
     //delete coding
     const delCourseFunc = () => {
         let delBtn = topicList.querySelectorAll(".del-btn")
-        delBtn.forEach( (btn, index) => {
+        delBtn.forEach( (btn) => {
             btn.onclick = async () => {
+                let index = btn.getAttribute("index")
                 let cnf = await isConfirmFunc()
                 if(cnf){
                     topics.splice(index,1)
@@ -69,9 +93,10 @@ export const topicFunc = () => {
     //edit coding
     const editFunc = () => {
         let editBtn = topicList.querySelectorAll(".edit-btn")
-        editBtn.forEach((btn, index) => {
+        editBtn.forEach((btn) => {
             btn.onclick = () => {
                 addTopicBtn.click()
+                let index = btn.getAttribute("index")
                 let string = btn.getAttribute('data')
                 let data = JSON.parse(string); 
                 allFormInput[0].value = data.name
@@ -80,7 +105,7 @@ export const topicFunc = () => {
                 allFormBtn[1].classList.add('d-none')
                 allFormBtn[2].classList.remove('d-none')
                 allFormBtn[2].onclick = () =>{
-                    registerFunc(courseForm, courses, 'courses', index, readCoursFunc)
+                    registerFunc(topicForm, topics, 'topics', index, readTopicFunc)
                     // window.location.reload()
                     
                     btnClose.click();
@@ -88,6 +113,13 @@ export const topicFunc = () => {
             }
         })
         
+    }
+ 
+    // reset form and btn
+    btnClose.onclick = () => {
+        allFormBtn[1].classList.remove('d-none')
+        allFormBtn[2].classList.add('d-none')
+        topicForm.reset('')
     }
     
     // read course coding
@@ -103,10 +135,10 @@ export const topicFunc = () => {
                 <td class="text-nowrap">${item.name}</td>
                 <td class="text-nowrap">${formateDateFunc(item.createdAt)}</td>
                 <td class="text-nowrap">
-                    <button data='${itemString}' class="edit-btn text-green-300">
+                    <button index="${item.index ? item.index : index}" data='${itemString}' class="edit-btn text-green-300">
                         <i class="fa-regular fa-pen-to-square"></i>
                     </button>
-                    <button class="del-btn text-red-300">
+                    <button index="${item.index ? item.index : index}" class="del-btn text-red-300">
                         <i class="fa-regular fa-trash-can"></i>
                     </button>
                 </td>

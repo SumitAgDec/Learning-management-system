@@ -59,7 +59,12 @@ const users = `
                                     <label for="name">
                                         Password <sup class="text-red-500">*</sup>
                                     </label>
-                                    <input type="password" name="password"  class="form-control">
+                                    <div class="input-group">
+                                        <input type="password" name="password"  class="form-control">
+                                        <span class="input-group-text toggle-p-btn cursor-pointer">
+                                            <i class="fa fa-eye-slash"></i>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -151,7 +156,7 @@ const users = `
                     </div>
                     <div class="modal-footer">
                         <button class="btn w-full bg-blue-600 font-semibold text-white">Submit</button>
-                        <button type="button" class="d-none btn w-full bg-red-400 font-semibold">Update</button>
+                        <button type="button" class="d-none btn w-full bg-red-400 text-white font-semibold">Update</button>
                     </div>
                 </div>
             </div>
