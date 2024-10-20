@@ -36,6 +36,7 @@ import { userFunc } from "../pages/js/users.js"
 import { categoryFunc, courseFunc } from "../pages/js/courses.js"
 import { topicFunc } from "../pages/js/topics.js"
 import { chapterFunc } from "../pages/js/chapters.js"
+import { settingsFunc } from "../pages/js/settings.js"
 
 
 
@@ -68,6 +69,9 @@ const handleRouteChanges = () =>{
     }
     else if ( path == '/chapters' ){
         chapterFunc();
+    }
+    else if ( path == '/settings' ){
+        settingsFunc();
     }
 }
 
