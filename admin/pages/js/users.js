@@ -9,6 +9,7 @@ import {
 export const userFunc = () => {
     let data = getDataFunc();
     let users = data ? data.users ? data.users : [] : [];
+    let usersMsg = data ? data.usersMsg ? data.usersMsg : [] : [];
     let usersEl = document.querySelector('.users')
     let openModalBtn = usersEl.querySelector('.open-modal')
     let modal = usersEl.querySelector('#users-modal')
@@ -20,6 +21,10 @@ export const userFunc = () => {
     let allFormText = usersForm.querySelector('textarea')
     let allFormBtn = usersForm.querySelectorAll("button")
     let togglePBtn = usersForm.querySelector(".toggle-p-btn")
+    let userMModal = usersEl.querySelector("#user-m-modal")
+    let mBtnClose = userMModal.querySelector(".btn-close")
+    let userMForm = usersEl.querySelector(".user-m-form")
+    let allUMFormInput = userMForm.querySelectorAll("input")
 
     // send data to DB or local storage
     usersForm.addEventListener('submit', function(e){
@@ -111,6 +116,26 @@ export const userFunc = () => {
         
     }
 
+    //send user message coding 
+    const sendUserMsg = () =>{
+        let allMBtn = usersList.querySelectorAll(".user-m-btn") 
+        allMBtn.forEach((btn, index)=>{
+            btn.onclick = () =>{
+                let name = btn.getAttribute("name")
+                let email = btn.getAttribute("email")
+                allUMFormInput[1].value = name
+                allUMFormInput[2].value = email
+            }
+        })   
+    }
+
+    //store user message coding
+    userMForm.onsubmit = () => {
+        registerFunc(userMForm, usersMsg, 'usersMsg');
+        mBtnClose.click();
+    }
+
+
     // read data form DB or local storage
     const readUserFunc = (array) => {
         usersList.innerHTML = ''
@@ -194,7 +219,12 @@ export const userFunc = () => {
                 <div class="flex justify-between items-center">
                     <div class="border-b w-full"></div>
                     <div class="w-full flex justify-between items-center">
-                        <button class="btn bg-blue-50 text-blue-600 rounded-full">
+                        <button 
+                        name = "${item.name}"
+                        email = "${item.email}"
+                        data-bs-toggle="modal" 
+                        data-bs-target="#user-m-modal" 
+                        class="user-m-btn btn bg-blue-50 text-blue-600 rounded-full">
                             <i class="fa-regular fa-envelope"></i>
                         </button>
                         <div class="border-b w-full"></div>
@@ -212,6 +242,7 @@ export const userFunc = () => {
         });
         editFunc()
         deleteFunc()
+        sendUserMsg()
     }
 
     readUserFunc(users)

@@ -162,6 +162,60 @@ const users = `
             </div>
         </div>
     </form>
+
+    <form class="user-m-form">
+        <div class="modal animate__animated animate__zoomIn" id="user-m-modal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="text-xl font-semibold">Create new message</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group mb-3">
+                            <label for="type">
+                                From
+                            </label>
+                            <input name="type" type="text" readonly value="admin" class="form-control">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="name">
+                                User name
+                            </label>
+                            <input name="name" type="text" readonly class="form-control">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="email">
+                                User email
+                            </label>
+                            <input name="email" readonly type="email" class="form-control">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="title">
+                                Title
+                            </label>
+                            <input name="title" type="text" class="form-control">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="message">
+                                Message
+                            </label>
+                            <textarea name="message" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn w-full bg-blue-600 font-semibold text-white">Submit</button>
+                        <button type="button" class="d-none btn w-full bg-red-400 font-semibold text-white">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
 </div>
 `;
 
