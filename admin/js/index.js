@@ -82,7 +82,7 @@ menuItems.forEach((items)=>{
         menuItems.forEach((el) => el.classList.remove('active'))
         let path = items.getAttribute("to")
         window.location.hash = path
-        items.classList.toggle('active')
+        items.classList.add('active')
     })
 })
 
@@ -100,7 +100,7 @@ window.addEventListener('DOMContentLoaded', () => {
     if(!window.location.hash){
         window.location.hash = '/';
         console.log(menuItems);
-        menuItems[0].classList.toggle('active');
+        menuItems[0].classList.add('active');
     } else {
         handleRouteChanges();
     }
