@@ -1,6 +1,6 @@
 const login = `
-<div class="register">
-    <form class="users-form">
+<div class="login">
+    <form class="login-form">
         <div class="animate__animated animate__zoomIn ">
             <div class="modal-dialog modal-lg modal-dialog-centered shadow">
                 <div class="modal-content">
@@ -42,6 +42,9 @@ const login = `
             </div>
         </div>
     </form>
+    <div class="text-center">
+        <a href="#/register">Don't have an account ?</a>
+    </div>
 </div>
 `
 

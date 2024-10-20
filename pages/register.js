@@ -1,8 +1,8 @@
 const register = `
 <div class="register">
-    <form class="users-form shadow">
+    <form class="register-form ">
         <div class="animate__animated animate__zoomIn">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-dialog modal-lg modal-dialog-centered shadow">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="text-xl font-semibold">Register now</h5>
@@ -94,10 +94,6 @@ const register = `
                                         Select Courses <sup class="text-red-500">*</sup>
                                     </label>
                                     <select class="form-select" name="course" multiple>
-                                        <option value="nodejs">Node js</option>
-                                        <option value="reactjs">React js</option>
-                                        <option value="php">Php</option>
-                                        <option value="javascript">Javascript</option>
                                     </select>
                                 </div>
                             </div>
@@ -115,6 +111,7 @@ const register = `
                         </div>
 
                     </div>
+                    <input type="radio" name="type" value="user" hidden checked>
                     <div class="modal-footer">
                         <button class="btn w-full bg-blue-600 font-semibold text-white">Submit</button>
 
@@ -123,6 +120,9 @@ const register = `
             </div>
         </div>
     </form>
+    <div class="text-center">
+        <a href="#/login">Alread have an account !</a>
+    </div>
 </div>
 `
 

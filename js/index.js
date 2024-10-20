@@ -16,6 +16,8 @@ import login from '../pages/login.js'
 
 //  import routes form pages / js folder
 // import {dashboardFunc} from '../pages/js/dashboard.js'
+import { registerUser } from '../pages/js/register.js'
+import { loginUser } from '../pages/js/login.js'
 
 
 
@@ -32,6 +34,12 @@ const handleRouteChanges = () =>{
     page.innerHTML = routes[path] || notFound;
     if( path == '/'){
         // dashboardFunc()
+    }
+    else if( path == '/register'){
+        registerUser()
+    }
+    else if( path == '/login'){
+        loginUser()
     }
 }
 
