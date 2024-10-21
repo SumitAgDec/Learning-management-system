@@ -1,4 +1,4 @@
-import {getDataFunc, registerFunc} from "../../admin/module/module.js"
+import {getDataFunc, registerFunc, formateDateFunc} from "../../admin/module/module.js"
 
 let userInfo;
 // check user login or not
@@ -22,7 +22,12 @@ let letterName = document.querySelector(".letter-name")
 let userMBtn = document.querySelector(".user-m-btn")
 let userMForm = document.querySelector(".user-m-form")
 let allMFormInput = userMForm.querySelectorAll("input")
-console.log(userMBtn);
+let profileBox = document.querySelector(".profile-box")
+let imgTag = profileBox.querySelector("img")
+let h3Tag = profileBox.querySelector("h3")
+let pTag = profileBox.querySelector("p")
+let profileForm = profileBox.querySelector(".profile-form")
+let allPInput = profileForm.querySelectorAll("input")
 
 // get data
 let data = getDataFunc()
@@ -48,6 +53,18 @@ logoutBtn.onclick = () => {
 profileEl.src = userInfo.profile
 userNameEl.innerText = userInfo.name
 letterName.innerHTML = userInfo.name[0]
+imgTag.src = userInfo.profile;
+h3Tag.innerText = userInfo.name;
+pTag.innerHTML = userInfo.email;
+allPInput[0].value = userInfo.father;
+allPInput[1].value = userInfo.mobile;
+allPInput[2].value = userInfo.address;
+allPInput[3].value = userInfo.type;
+allPInput[4].value = userInfo.course;
+allPInput[5].value = userInfo.password;
+allPInput[6].value = userInfo.status;
+allPInput[7].value = userInfo.price;
+allPInput[8].value = formateDateFunc(userInfo.createdAt);
 
 // filter course
 let filter = courses.filter((item)=>course.includes(item.name))

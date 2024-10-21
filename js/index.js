@@ -15,12 +15,15 @@ import notFound from '../pages/notFound.js'
 import login from '../pages/login.js'
 import home from '../pages/home.js'
 import courses from '../pages/courses.js'
+import syllabusEl from '../pages/syllabus.js'
+
 
 //  import routes form pages / js folder
 // import {dashboardFunc} from '../pages/js/dashboard.js'
 import { registerUser } from '../pages/js/register.js'
 import { loginUser } from '../pages/js/login.js'
 import { coursesFunc } from '../pages/js/courses.js'
+import { syllabus } from '../pages/js/syllabus.js'
 
 
 
@@ -29,6 +32,7 @@ const routes = {
     '/register' :register,
     '/login' :login,
     '/courses' :courses,
+    '/syllabus' :syllabusEl,
 }
 
 
@@ -47,6 +51,9 @@ const handleRouteChanges = () =>{
     }
     else if( path == '/courses'){
         coursesFunc()
+    }
+    else if( path == '/syllabus'){
+        syllabus()
     }
 }
 

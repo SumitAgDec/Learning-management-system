@@ -32,8 +32,17 @@ export const coursesFunc = () => {
                     <button class="btn bg-blue-400 text-white">Course Link</button>
                 </a>
             </div>
-            <button class="btn bg-green-500 text-white w-full">Syllabus</button>
+            <a href="#/syllabus" class="course-btn" name="${item.name}">
+                <button class="btn bg-green-500 text-white w-full">Syllabus</button>
+            </a>
         </div>
         `
     });
+    let allCourseBtn = courseList.querySelectorAll(".course-btn")
+    allCourseBtn.forEach((btn, index)=>{
+        btn.onclick = () =>{
+            let course = btn.getAttribute("name")
+            sessionStorage.setItem("course", course)
+        }
+    })
 }
