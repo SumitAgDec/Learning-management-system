@@ -101,10 +101,7 @@ const users = `
                                         Select Courses <sup class="text-red-500">*</sup>
                                     </label>
                                     <select class="form-select" name="course" multiple>
-                                        <option value="nodejs">Node js</option>
-                                        <option value="reactjs">React js</option>
-                                        <option value="php">Php</option>
-                                        <option value="javascript">Javascript</option>
+                                        
                                     </select>
                                 </div>
                             </div>

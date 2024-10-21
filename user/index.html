@@ -15,20 +15,20 @@
      <script src="../assets/js/apexcharts.js"></script>
     <!-- End js link -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Admin Panel</title>
+    <title>User Panel</title>
 </head>
 <body>
     <div class="side-nav active  p-4">
         <div class="d-flex flex-column justify-content-center align-items-center">
-            <img src="../assets/images/projectLogo.png" width="60" alt="logo">
-            <h5 class="my-3 font-bold">Just for code</h5>
+            <img class="profile" src="../assets/images/projectLogo.png" width="60" alt="logo">
+            <h5 class="user-name my-3 capitalize font-bold">Just for code</h5>
         </div>
         <ul>
             <li class="menu-items" to="#/">
                 <i class="fa fa-dashboard"></i>
                 Dashboard
             </li>
-            <li class="menu-items" to="#/logout">
+            <li class="menu-items logout-btn" to="#/logout">
                 <i class="fa fa-right-from-bracket"></i>
                 Logout
             </li>
@@ -41,24 +41,79 @@
                     <i class="fa fa-align-left"></i>
                 </button>
                 <div class="flex gap-3">
-                    <button class="btn rounded-full bg-green-200 text-green-600">
+                    <button data-bs-toggle="modal" data-bs-target="#user-m-modal" class="user-m-btn btn rounded-full bg-green-200 text-green-600">
                         <i class="fa-regular fa-envelope"></i>
                     </button>
                     <button class="btn rounded-full bg-red-200 text-red-600 position-relative">
                         <i class="fa-regular fa-bell"></i>
                         <span class="position-absolute top-0 start-100 translate-middle bg-danger badge rounded-pill">99+</span>
                     </button>
-                    <button class="btn rounded-full bg-red-400 text-white">
-                        A
+                    <button class="btn capitalize letter-name rounded-full bg-red-400 text-white">
+                        
                     </button>
                 </div>
             </div>
 
         </nav>
         <div class="page p-4">
-            
+            <div class="course-list grid md:grid-cols-3 gap-4">
+                
+            </div>
         </div>
     </div>
+
+    <form class="user-m-form">
+        <div class="modal animate__animated animate__zoomIn" id="user-m-modal">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="text-xl font-semibold">Create new message</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group mb-3">
+                            <label for="type">
+                                From
+                            </label>
+                            <input name="type" type="text" readonly value="user" class="form-control">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="name">
+                                User name
+                            </label>
+                            <input name="name" type="text" readonly class="form-control">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="email">
+                                User email
+                            </label>
+                            <input name="email" readonly type="email" class="form-control">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="title">
+                                Title
+                            </label>
+                            <input name="title" type="text" class="form-control">
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="message">
+                                Message
+                            </label>
+                            <textarea name="message" class="form-control"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn w-full bg-blue-600 font-semibold text-white">Submit</button>
+                        <button type="button" class="d-none btn w-full bg-red-400 font-semibold text-white">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 
     <script src="js/index.js" type="module"></script>
 </body>

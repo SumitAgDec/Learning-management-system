@@ -3,12 +3,14 @@ import {
     getDataFunc, 
     formateDateFunc, 
     isConfirmFunc,
-    updateDeFunc
+    updateDeFunc,
+    createOptionsFunc
     } from "../../module/module.js"
 
 export const userFunc = () => {
     let data = getDataFunc();
     let users = data ? data.users ? data.users : [] : [];
+    let courses = data ? data.courses ? data.courses : [] : [];
     let usersMsg = data ? data.usersMsg ? data.usersMsg : [] : [];
     let usersEl = document.querySelector('.users')
     let openModalBtn = usersEl.querySelector('.open-modal')
@@ -52,6 +54,9 @@ export const userFunc = () => {
             togglePBtn.innerHTML = `<i class="fa fa-eye-slash"></i>`
         }
     }
+
+    // show course in form select
+    createOptionsFunc(courses, allFormSelect[1], 'name')
 
     // delete coding 
     const deleteFunc = () => {
