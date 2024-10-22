@@ -44,9 +44,9 @@
                     <button data-bs-toggle="modal" data-bs-target="#user-m-modal" class="user-m-btn btn rounded-full bg-green-200 text-green-600">
                         <i class="fa-regular fa-envelope"></i>
                     </button>
-                    <button class="btn rounded-full bg-red-200 text-red-600 position-relative">
+                    <button data-bs-toggle="modal" data-bs-target="#user-m-l-modal" class="btn rounded-full bg-red-200 text-red-600 position-relative">
                         <i class="fa-regular fa-bell"></i>
-                        <span class="position-absolute top-0 start-100 translate-middle bg-danger badge rounded-pill">99+</span>
+                        <span class="position-absolute count-msg top-0 start-100 translate-middle bg-danger badge rounded-pill"></span>
                     </button>
                     <button class="btn capitalize letter-name rounded-full bg-red-400 text-white">
                         
@@ -164,6 +164,37 @@
             </div>
         </div>
     </form>
+
+    <div class="modal animate__animated animate__zoomIn" id="user-m-l-modal">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="text-xl font-semibold">Message List</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-nowrap">Sr</th>
+                                <th class="text-nowrap">Title</th>
+                                <th class="text-nowrap">Message</th>
+                                <th class="text-nowrap">Date</th>
+                                <th class="text-nowrap">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="user-msg-list">
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <!-- <div class="modal-footer">
+                    <button class="btn w-full bg-blue-600 font-semibold text-white">Submit</button>
+                    <button type="button" class="d-none btn w-full bg-red-400 font-semibold text-white">Update</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
 
     <script src="js/index.js" type="module"></script>
 </body>

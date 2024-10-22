@@ -1,4 +1,8 @@
-import {getDataFunc, registerFunc, formateDateFunc} from "../../admin/module/module.js"
+import {getDataFunc, 
+    registerFunc, 
+    formateDateFunc,
+    updateDeFunc
+} from "../../admin/module/module.js"
 
 let userInfo;
 // check user login or not
@@ -10,7 +14,7 @@ else
 {
     window.location = "../../index.html"
 }
-// console.log(userInfo);
+console.log(userInfo);
 
 
 // all global variables
@@ -28,10 +32,11 @@ let h3Tag = profileBox.querySelector("h3")
 let pTag = profileBox.querySelector("p")
 let profileForm = profileBox.querySelector(".profile-form")
 let allPInput = profileForm.querySelectorAll("input")
+let countMsgEl = document.querySelector(".count-msg")
+let userMList = document.querySelector(".user-msg-list")
 
 // get data
 let data = getDataFunc()
-console.log(data);
 
 const {courses} = data;
 const {usersMsg} = data;
@@ -49,6 +54,61 @@ logoutBtn.onclick = () => {
     },2000)
 }
 
+// filter message
+let filterMsg = usersMsg.filter((item) => {
+    return item.type == 'admin' && item.email == userInfo.email && item.status != true
+});
+
+// filter all message
+let filterAllMsg = usersMsg
+  .map((item, index) => ({
+    ...item,
+    index: index
+  }))
+  .filter((item) => {
+    return item.email == userInfo.email;
+  });
+
+
+//update status
+const updateStatus = () => {
+    let allSBtn = userMList.querySelectorAll(".status-btn")
+    allSBtn.forEach((btn, no)=>{
+        btn.onclick = () => {
+            let index = btn.getAttribute("index")
+            let obj = usersMsg[index];
+            obj['status'] = true;
+            usersMsg[index] = obj;
+            updateDeFunc(usersMsg, 'usersMsg')
+            filterAllMsg[no] = obj
+            showUserMList()
+        }
+    })
+}
+
+// show all message
+const showUserMList = () => {
+    userMList.innerHTML = ''
+    filterAllMsg.forEach((item,index)=>{
+        userMList.innerHTML += `
+        <tr>
+            <td class="text-nowrap">${index + 1}</td>
+            <td class="text-nowrap">${item.title}</td>
+            <td class="text-nowrap">${item.message}</td>
+            <td class="text-nowrap">${formateDateFunc(item.createdAt)}</td>
+            <td class="text-nowrap">
+                ${item.status ? `<button disabled class="btn text-green-500"><i class="fa fa-eye"></i></button>` : `<button ${item.type == 'user' ? 'disabled' : ''} index="${item.index}" class="btn status-btn text-grey-500"><i class="fa fa-eye-slash"></i></button>`}
+                ${item.type == 'user' ? `${item.status != true ? `<button class="btn text-green-500"><i class="fa fa-edit"></i></button>` : ''}
+                <button class="btn text-red-500"><i class="fa fa-trash"></i></button>` : ''}
+            </td>
+        </tr>
+        `
+    })
+    updateStatus();
+};
+showUserMList()
+
+
 // show profile and name
 profileEl.src = userInfo.profile
 userNameEl.innerText = userInfo.name
@@ -65,10 +125,11 @@ allPInput[5].value = userInfo.password;
 allPInput[6].value = userInfo.status;
 allPInput[7].value = userInfo.price;
 allPInput[8].value = formateDateFunc(userInfo.createdAt);
+filterMsg.length == 0 && countMsgEl.classList.add("d-none")
+countMsgEl.innerText = filterMsg.length;
 
 // filter course
 let filter = courses.filter((item)=>course.includes(item.name))
-
 filter.forEach((item, index) => {
     courseListEl.innerHTML += `
         <div class="card flex gap-y-4 p-3 bg-white shadow">
@@ -98,6 +159,7 @@ filter.forEach((item, index) => {
         </div>
     `
 });
+
 
 // send message from user
 userMBtn.onclick = () => {

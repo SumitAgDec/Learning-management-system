@@ -213,6 +213,38 @@ const users = `
         </div>
     </form>
 
+    <div class="modal animate__animated animate__zoomIn" id="user-m-l-modal">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="text-xl font-semibold">Message List</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th class="text-nowrap">Sr</th>
+                                <th class="text-nowrap">Type</th>
+                                <th class="text-nowrap">Title</th>
+                                <th class="text-nowrap">Message</th>
+                                <th class="text-nowrap">Date</th>
+                                <th class="text-nowrap">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="user-msg-list">
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <!-- <div class="modal-footer">
+                    <button class="btn w-full bg-blue-600 font-semibold text-white">Submit</button>
+                    <button type="button" class="d-none btn w-full bg-red-400 font-semibold text-white">Update</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
 </div>
 `;
 

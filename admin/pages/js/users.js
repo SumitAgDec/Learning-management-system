@@ -27,6 +27,7 @@ export const userFunc = () => {
     let mBtnClose = userMModal.querySelector(".btn-close")
     let userMForm = usersEl.querySelector(".user-m-form")
     let allUMFormInput = userMForm.querySelectorAll("input")
+    let userMList = usersEl.querySelector(".user-msg-list")
 
     // send data to DB or local storage
     usersForm.addEventListener('submit', function(e){
@@ -121,6 +122,72 @@ export const userFunc = () => {
         
     }
 
+    // show user message 
+    const showUserMessage = () => {
+        let allStatusBtn = usersList.querySelectorAll(".status-btn")
+        allStatusBtn.forEach((btn,index)=>{
+            btn.onclick = () => {
+                let email = btn.getAttribute("email")
+                controlUserAdminMsg(email)
+            }
+        })
+    }
+
+    // control user and admin message
+
+    const controlUserAdminMsg = (email) =>{
+        // filter all message
+        let filterAllMsg = usersMsg
+            .map((item, index) => ({
+                ...item,
+                index: index
+            }))
+            .filter((item) => {
+                return item.email == email;
+            });
+
+
+        //update status
+        const updateStatus = () => {
+            let allSBtn = userMList.querySelectorAll(".status-btn")
+            allSBtn.forEach((btn, no) => {
+                btn.onclick = () => {
+                    let index = btn.getAttribute("index")
+                    let obj = usersMsg[index];
+                    obj['status'] = true;
+                    usersMsg[index] = obj;
+                    updateDeFunc(usersMsg, 'usersMsg')
+                    filterAllMsg[no] = obj
+                    showUserMList()
+                }
+            })
+        }
+
+        // show all message
+        const showUserMList = () => {
+            userMList.innerHTML = ''
+            filterAllMsg.forEach((item, index) => {
+                userMList.innerHTML += `
+                <tr>
+                    <td class="text-nowrap">${index + 1}</td>
+                    <td class="text-nowrap">${item.type}</td>
+                    <td class="text-nowrap">${item.title}</td>
+                    <td class="text-nowrap">${item.message}</td>
+                    <td class="text-nowrap">${formateDateFunc(item.createdAt)}</td>
+                    <td class="text-nowrap">
+                        ${item.status ? `<button disabled class="btn text-green-500"><i class="fa fa-eye"></i></button>` : `<button ${item.type == 'admin' ? 'disabled' : ''} index="${item.index}" class="btn status-btn text-grey-500"><i class="fa fa-eye-slash"></i></button>`}
+                        ${item.type == 'admin' ? `${item.status != true ? `<button class="btn text-green-500"><i class="fa fa-edit"></i></button>` : ''}
+                        <button class="btn text-red-500"><i class="fa fa-trash"></i></button>` : ''}
+                    </td>
+                </tr>
+                `
+            })
+            updateStatus();
+        };
+        showUserMList()
+
+    }
+
     //send user message coding 
     const sendUserMsg = () =>{
         let allMBtn = usersList.querySelectorAll(".user-m-btn") 
@@ -146,6 +213,12 @@ export const userFunc = () => {
         usersList.innerHTML = ''
         array.forEach( (item, index) => {
             let itemString = JSON.stringify(item);
+            // filter message
+            let filterMsg = usersMsg.filter((obj) => {
+                return obj.type == 'user' && obj.email == item.email && obj.status != true
+            });
+            console.log(filterMsg);
+            
             usersList.innerHTML += `
             <div class="p-4 bg-white shadow-sm">
                 <div class="flex border-b py-3 justify-between items-center">
@@ -164,8 +237,17 @@ export const userFunc = () => {
                     <div class="dropdown dropstart">
                         <button role="btn" data-bs-toggle='dropdown' class="btn bg-gray-100 rounded-full w-11 h-11">
                             <i class="fa-solid fa-ellipsis-vertical"></i>
+                            ${
+                                filterMsg.length != 0 ? `
+                                <span class="position-absolute count-msg top-0 start-100 translate-middle bg-danger badge rounded-pill">${filterMsg.length}</span>
+                                ` : ''
+                            }
                         </button>
                         <div class="dropdown-menu">
+                            <button email="${item.email}" data-bs-toggle="modal" data-bs-target="#user-m-l-modal" class="status-btn flex items-center justify-between dropdown-item text-gray-600">
+                                Notification
+                                <i class="fa fa-eye"></i>
+                            </button>
                             <button data='${itemString}' class="edit-btn flex items-center justify-between dropdown-item text-blue-600">
                                 Edit
                                 <i class="fa fa-edit"></i>
@@ -248,6 +330,7 @@ export const userFunc = () => {
         editFunc()
         deleteFunc()
         sendUserMsg()
+        showUserMessage();
     }
 
     readUserFunc(users)
